@@ -1,10 +1,26 @@
 # 🔐 Claude Security Research Skill
 
+![Claude Code](https://img.shields.io/badge/Claude-Code-orange)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Security Research](https://img.shields.io/badge/use-security%20research-green)
+
 **A full-spectrum security research skill for Claude** — structured, tool-driven security assessment workflows built directly into your AI assistant.
 
 Drop this skill into [Claude Code](https://claude.ai/code) or any Claude MCP setup and get an AI that thinks like a security researcher: structured phases, proper tool chaining, scoped recon, and professional reporting — not ad-hoc command generation.
 
 Claude's role in this skill is to **interpret tool output, suggest next steps, and document findings**. Tools perform the active testing. Claude does not generate payloads or exploit code.
+
+---
+
+## See It In Action
+
+Want to know what the output actually looks like before installing?
+
+**[View sample assessment report →](examples/sample-report.md)**
+
+A fictional but realistic security assessment report showing the exact format
+Claude produces — five findings across CRITICAL → INFO severities, with raw
+tool output, impact analysis, and a remediation priority table.
 
 ---
 
@@ -32,6 +48,11 @@ Claude automatically routes based on your target type, loads the right reference
 ---
 
 ## Quick Start
+
+### 0. Prerequisites
+- Claude Code installed and configured
+- A target you are authorized to test
+- Linux/macOS environment (WSL works on Windows)
 
 ### 1. Install the skill
 
@@ -88,6 +109,49 @@ Claude will confirm scope, propose a phase plan, load the right references, and 
 └── .claude/
     └── settings.local.json     # Claude MCP configuration
 ```
+
+---
+
+## How the Skill Works
+
+When you install this skill, Claude loads `SKILL.md` into its context. Here's
+the first 30 lines — exactly what shapes Claude's behavior on every engagement:
+
+```markdown
+---
+name: cybersec-security-research
+description: >
+  Full-spectrum security research skill for web servers, REST APIs, web applications,
+  and network/port enumeration. Triggers whenever the user wants to: find vulnerabilities,
+  run a security assessment, scan a target, test an API for security issues,
+  enumerate ports or services, check for OWASP Top 10 vulnerabilities, audit auth/secrets,
+  fuzz endpoints, run recon on a domain or IP, or use tools like nmap, nikto, nuclei,
+  ZAP, sqlmap, ffuf, dalfox, subfinder, hydra, or trufflehog. Use this skill even if the
+  user says "just a quick scan" or phrases it casually. Covers full engagement workflow:
+  recon → enumeration → vuln scanning → vulnerability validation → reporting.
+---
+
+# Security Research Skill
+
+Advanced security research skill for web servers, REST APIs, web applications, and
+network infrastructure. Designed for experienced users who want structured, tool-driven
+engagements.
+
+---
+
+## Claude's Role
+
+Claude's role is to interpret tool output, suggest next steps, and document findings.
+Tools perform active testing. Claude does not generate payloads or exploit code.
+
+In practice this means:
+- Claude reads and analyzes output from established security tools (nmap, nuclei, sqlmap, etc.)
+- Claude proposes which tool to run next and explains why
+- Claude organizes findings into the reporting format
+```
+
+The full file (including the ethics gate, phase workflow, target routing table,
+and output standards) is at [SKILL.md](SKILL.md).
 
 ---
 
