@@ -1,5 +1,6 @@
 ---
-name: cybersec-security-research
+name: security-research
+user-invokable: true
 description: >
   Full-spectrum security research skill for web servers, REST APIs, web applications,
   and network/port enumeration. Triggers whenever the user wants to: find vulnerabilities,

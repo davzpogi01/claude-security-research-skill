@@ -78,6 +78,18 @@ chmod +x scripts/init-engagement.sh
 ```
 
 ### 4. Talk to Claude
+
+The skill can be invoked two ways.
+
+**As a slash command (Claude Code CLI):**
+```
+/security-research
+```
+This explicitly loads the skill into Claude's context.
+
+**As natural language:**
+Claude will also auto-load the skill when your request matches its description — asking for a scan, vuln assessment, recon, secrets audit, etc.:
+
 ```
 "Run a full security assessment on https://target.example.com — I have written authorization."
 "Do passive recon on domain.com — stay passive only."
@@ -119,7 +131,8 @@ the first 30 lines — exactly what shapes Claude's behavior on every engagement
 
 ```markdown
 ---
-name: cybersec-security-research
+name: security-research
+user-invokable: true
 description: >
   Full-spectrum security research skill for web servers, REST APIs, web applications,
   and network/port enumeration. Triggers whenever the user wants to: find vulnerabilities,
